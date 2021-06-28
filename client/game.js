@@ -213,6 +213,7 @@ this.physics.add.collider(player, palm, youWin, null, this)
       
     }
     clickButton() {
+      score=0
       this.scene.start("game")
     }
 }
@@ -220,7 +221,6 @@ this.physics.add.collider(player, palm, youWin, null, this)
 
 function hitBomb (player, bomb)
 {
-
     this.physics.pause();
     restart.setText('restart!')
     restart.setInteractive({useHandCursor: true})
@@ -229,7 +229,6 @@ function hitBomb (player, bomb)
     player.anims.play('turn');
     gameOver.setFontSize('75px')
     gameOver.setText('GAME OVER')
-
 }
 
 function youWin (player) {
