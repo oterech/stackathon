@@ -1,8 +1,8 @@
 {
-  "name": "fs-app-template",
+  "name": "stackathon",
   "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
-  "main": "index.js",
+  "description": "phaser.js game",
+  "main": "index.html",
   "scripts": {
     "build": "webpack",
     "build:dev": "npm run build -- --watch --mode=development",
@@ -28,6 +28,7 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
     "pg": "^8.5.1",
+    "phaser": "^3.55.2",
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
