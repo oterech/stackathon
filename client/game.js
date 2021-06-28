@@ -1,3 +1,4 @@
+
 import Phaser, { Cameras } from 'phaser'
 
 var platforms
@@ -14,6 +15,7 @@ var map
 var groundLayer
 var endplat
 var background
+var restart
 const trueOrFalse = Math.random() < 0.5
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
@@ -157,6 +159,8 @@ this.physics.add.overlap(player, pb, collectPB, null, this);
 scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#F8FA90' });
 scoreText.setScrollFactor(0)
 gameOver = this.add.text(200,200)
+restart = this.add.text(400,500)
+restart.setScrollFactor(0)
 gameOver.setScrollFactor(0)
 backDrop.setScrollFactor(0)
 //this creates a group  for the bombs and adds a boundary between all the bombs and the platforms(so they bounce off and not go through)
@@ -203,17 +207,24 @@ this.physics.add.collider(player, palm, youWin, null, this)
       
       
     }
+    clickButton() {
+      this.scene.start("game")
+    }
 }
 
 
 function hitBomb (player, bomb)
 {
+
     this.physics.pause();
+    restart.setText('restart!')
+    restart.setInteractive({useHandCursor: true})
+    restart.on('pointerdown', () => this.clickButton())
     player.setTint(0xff0000);
     player.anims.play('turn');
     gameOver.setFontSize('75px')
     gameOver.setText('GAME OVER')
-    controls.active = false
+
 }
 
 function youWin (player) {
@@ -265,5 +276,6 @@ function collectPB (player, peanut){
           bomb.setCollideWorldBounds(true);
           bomb.setVelocity(Phaser.Math.Between(-300, 500), 50);
   }
+
 
 export default GameScene
