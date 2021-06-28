@@ -38,6 +38,7 @@ class GameScene extends Phaser.Scene {
   this.load.image('bomb', 'bomb.png');
   this.load.image('palm', 'palm-tree-right.png');
   this.load.image('pb', 'peanutbutter.png');
+  this.load.image('poppy', 'poppy.png')
     }
     create(){
         console.log(this.anims.generateFrameNumbers('dog'))
@@ -52,10 +53,12 @@ class GameScene extends Phaser.Scene {
   platforms.setCollisionByExclusion([-1])
   endplat.setCollisionByExclusion([-1])
   player = this.physics.add.sprite(100 , 450,'dog')
-  let palm = this.physics.add.sprite(3200, 100, 'palm');
+  let palm = this.physics.add.sprite(3100, 100, 'palm');
+  let poppy = this.physics.add.sprite(3200, 100,'poppy')
   player.setBounce(.5)
   player.setCollideWorldBounds(true);
   palm.setCollideWorldBounds(true)
+  poppy.setCollideWorldBounds(true)
 
   this.physics.world.bounds.width = groundLayer.width;
   this.physics.world.bounds.height = groundLayer.height; 
@@ -87,8 +90,10 @@ this.anims.create({
 player.body.setGravityY(300)
 this.physics.add.collider(player, groundLayer);
 this.physics.add.collider(player, platforms);
-this.physics.add.collider(palm, endplat)
+
 this.physics.add.collider(player,endplat)
+this.physics.add.collider(palm, endplat)
+this.physics.add.collider(poppy, endplat)
 cursors = this.input.keyboard.createCursorKeys();
 
 
